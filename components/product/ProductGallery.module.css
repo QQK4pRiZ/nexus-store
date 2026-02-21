@@ -1,0 +1,140 @@
+.gallery {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+/* Thumbnails */
+.thumbs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.thumb {
+  position: relative;
+  width: 76px;
+  height: 76px;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-surface);
+  border: 2px solid transparent;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  flex-shrink: 0;
+}
+
+.thumb:hover {
+  border-color: var(--color-border-hover);
+}
+
+.thumb.thumbActive {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+
+.thumbImg {
+  object-fit: contain;
+  padding: 4px;
+}
+
+/* Main */
+.main {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: var(--color-surface);
+  border-radius: var(--radius-2xl);
+  overflow: hidden;
+}
+
+.mainInner {
+  position: absolute;
+  inset: 0;
+  padding: 5%;
+}
+
+.mainImg {
+  object-fit: contain;
+}
+
+/* Arrows */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid var(--color-border);
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-full);
+  font-size: 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  z-index: 2;
+  transition: background var(--transition-fast), opacity var(--transition-fast);
+  line-height: 1;
+  padding-bottom: 2px;
+}
+
+.arrow:hover:not(:disabled) {
+  background: white;
+  box-shadow: var(--shadow-md);
+}
+
+.arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.arrowLeft  { left: 12px; }
+.arrowRight { right: 12px; }
+
+/* Dots */
+.dots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 2;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.2);
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.dot.dotActive {
+  background: var(--color-primary);
+  transform: scale(1.35);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .thumbs {
+    flex-direction: row;
+    overflow-x: auto;
+    order: 2;
+    gap: var(--space-2);
+    padding-bottom: 4px;
+  }
+
+  .thumb {
+    flex-shrink: 0;
+  }
+
+  .main {
+    order: 1;
+  }
+}
