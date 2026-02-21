@@ -4,7 +4,7 @@ type BadgeVariant = 'new' | 'sale' | 'popular' | 'hit' | 'custom';
 
 interface BadgeProps {
   variant?: BadgeVariant;
-  children: React.ReactNode;
+  children?: React.ReactNode;
   className?: string;
 }
 
